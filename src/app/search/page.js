@@ -21,7 +21,7 @@ import {
 } from '@mui/material';
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-// import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 const dogs = [
   {
@@ -110,6 +110,38 @@ export default function Search() {
     }
   }
 
+  // This isn't working correctly, right now...
+  // I think the card might need to be broken down to
+  // it's own component so each can have its own favorite state
+  // right now one is just replacing the other and there
+  //is only ever one favorited at a time...
+
+  // it works when it doesn't include the state variables and
+  // just works off of the const variable.
+
+  // need to take another look at this with the Card broken out.
+  const newFavoriteDogsList = []
+
+  const handleFavoriteClick = (dog) => {
+    const dogIndex = newFavoriteDogsList.indexOf(dog.id)
+
+    if (!favoriteDogsList.includes(dog.id)) {
+      newFavoriteDogsList.push(dog.id)
+      setFavoriteDogsList(newFavoriteDogsList)
+    } else {
+      newFavoriteDogsList.splice(dogIndex, 1)
+      setFavoriteDogsList(newFavoriteDogsList)
+    }
+  }
+
+  const displayFavoriteIcons = (dog) => {
+    if (favoriteDogsList.includes(dog.id)) {
+      return <FavoriteIcon />
+    } else {
+      return <FavoriteBorderIcon />
+    }
+  }
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -177,8 +209,8 @@ export default function Search() {
                   <Typography>Location (Zip Code): {dog.zip_code}</Typography>
                 </CardContent>
                 <CardActions>
-                  <IconButton>
-                    <FavoriteBorderIcon />
+                  <IconButton onClick={() => handleFavoriteClick(dog)}>
+                    {displayFavoriteIcons(dog)}
                   </IconButton>
                 </CardActions>
               </Card>

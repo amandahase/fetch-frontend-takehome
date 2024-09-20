@@ -1,41 +1,35 @@
 'use client';
 import styles from "./page.module.css";
 import { useState } from "react"
+
 import { Card, CardContent, TextField, Button, Typography } from '@mui/material';
+
+const axios = require('axios');
 
 export default function Home() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
  
   const handleLoginButton = async () => {
-    // alert(`Login to app yo! ${name}, ${email}`)
- 
-    // - We'll want to create a POST to login endpoint ("/auth/login")
-    // - In that POST, we'll want to send the name and email values given
-    // - We'll also want to try to have some sort of validation, 
-    // or at least make sure they've entered both values before submitting
-    const endpointUrl = "https://frontend-take-home-service.fetch.com/auth/login";
-    const fetchObject = {
-      method: "POST",
-      body: JSON.stringify({
-        name: name, 
-        email: email
-      }),
-      credentials: "include" // This isn't working because of SameSite error on response cookie...
+    // This is finally getting a good response for the request
+    // Now I need to figure out how to redirect the url to the
+    // search page (/search) after getting the response back.
+
+    // There might be something in the next.js/react docs for this that
+    // I haven't been able to find yet/get to work right.
+
+    const requestBody = {
+      name: name,
+      email: email
     }
- 
-    try {
-      const response = await fetch(endpointUrl, fetchObject);
 
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
-      }
-
-      const json = await response.json();
-      console.log(json);
-    } catch (error) {
+    axios.post('https://frontend-take-home-service.fetch.com/auth/login', requestBody, { withCredentials: true })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
       console.log(error);
-    }
+    });
   }
 
   return (

@@ -23,57 +23,6 @@ import {
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-// const dogs = [
-//   {
-//     id: "1111",
-//     img: "",
-//     name: "Daisy",
-//     age: 2,
-//     zip_code: "12345",
-//     breed: "Chocolate Lab",
-//   },
-//   {
-//     id: "2222",
-//     img: "",
-//     name: "Larry",
-//     age: 4,
-//     zip_code: "43211",
-//     breed: "Golden Retriever",
-//   },
-//   {
-//     id: "3333",
-//     img: "",
-//     name: "Luke",
-//     age: 1,
-//     zip_code: "98765",
-//     breed: "Husky",
-//   },
-//   {
-//     id: "4444",
-//     img: "",
-//     name: "Freya",
-//     age: 6,
-//     zip_code: "76585",
-//     breed: "Australian Shephard",
-//   },
-//   {
-//     id: "5555",
-//     img: "",
-//     name: "Callie",
-//     age: 2,
-//     zip_code: "76854",
-//     breed: "Border Collie",
-//   },
-//   {
-//     id: "6666",
-//     img: "",
-//     name: "Snickers",
-//     age: 4,
-//     zip_code: "34567",
-//     breed: "Pitbull",
-//   },
-// ]
-
 const axios = require('axios');
 
 export default function Search() {
@@ -84,19 +33,15 @@ export default function Search() {
 
   useEffect(() => {
     getDogBreeds()
-    getAllDogsList()
   }, [])
 
-  const getAllDogsList = async () => {
+  const handleGetDogsList = async () => {
     let resultDogIds
-    // TODO: STILL NEED TO FIGURE OUT WHY PARAMS WON'T GO THROUGH IN GET REQUEST HERE
-    // GETTING EITHER A 500 OR A 401 ERROR IN RETURN WHEN I TRY
     const params = {
-      size: 10000,
-      from: 25
+      breeds: dogBreedFilter
     }
 
-    await axios.get('https://frontend-take-home-service.fetch.com/dogs/search', { withCredentials: true, })
+    await axios.get('https://frontend-take-home-service.fetch.com/dogs/search', { params: params, withCredentials: true, })
     .then((response) => {
       resultDogIds = response.data.resultIds
     })
@@ -133,14 +78,8 @@ export default function Search() {
     );
   };
 
-  const handleFilterList = () => {
-    const filteredDogList = dogsList.filter((dog) => dogBreedFilter.includes(dog.breed))
-
-    setdogsList(filteredDogList)
-  }
-
   const handleRemoveFilters = () => {
-    setdogsList(dogs)
+    setDogsList([])
     setDogBreedFilter([])
   }
 
@@ -219,9 +158,9 @@ export default function Search() {
             </FormControl>
             <Button
               variant="contained"
-              onClick={handleFilterList}
+              onClick={handleGetDogsList}
             >
-              Filter List
+              Search Dogs
             </Button>
             <Button
               variant="text"
@@ -238,26 +177,30 @@ export default function Search() {
           </Button>
         </div>
         <Grid container spacing={3}>
-          {dogsList?.map((dog) => (
-            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={dog.id}>
-              <Card>
-                <CardMedia
-                  title={`${dog.name}, ${dog.age} year old ${dog.breed}`}
-                />
-                <CardContent>
-                  <Typography>Name: {dog.name}</Typography>
-                  <Typography>Breed: {dog.breed}</Typography>
-                  <Typography>Age: {dog.age}</Typography>
-                  <Typography>Location (Zip Code): {dog.zip_code}</Typography>
-                </CardContent>
-                <CardActions>
-                  <IconButton onClick={() => handleFavoriteClick(dog)}>
-                    {displayFavoriteIcons(dog)}
-                  </IconButton>
-                </CardActions>
-              </Card>
-            </Grid>
-          ))}
+          {dogsList.length ? 
+            dogsList?.map((dog) => (
+              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={dog.id}>
+                <Card>
+                  <CardMedia
+                    title={`${dog.name}, ${dog.age} year old ${dog.breed}`}
+                  />
+                  <CardContent>
+                    <Typography>Name: {dog.name}</Typography>
+                    <Typography>Breed: {dog.breed}</Typography>
+                    <Typography>Age: {dog.age}</Typography>
+                    <Typography>Location (Zip Code): {dog.zip_code}</Typography>
+                  </CardContent>
+                  <CardActions>
+                    <IconButton onClick={() => handleFavoriteClick(dog)}>
+                      {displayFavoriteIcons(dog)}
+                    </IconButton>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))
+          :
+            "No search results"
+          }
         </Grid>
       </main>
     </div>

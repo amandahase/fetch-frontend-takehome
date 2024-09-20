@@ -1,6 +1,7 @@
 'use client';
 import styles from "./page.module.css";
 import { useState } from "react"
+import { useRouter } from 'next/navigation'
 
 import { Card, CardContent, TextField, Button, Typography } from '@mui/material';
 
@@ -9,15 +10,10 @@ const axios = require('axios');
 export default function Home() {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
+
+  const router = useRouter()
  
   const handleLoginButton = async () => {
-    // This is finally getting a good response for the request
-    // Now I need to figure out how to redirect the url to the
-    // search page (/search) after getting the response back.
-
-    // There might be something in the next.js/react docs for this that
-    // I haven't been able to find yet/get to work right.
-
     const requestBody = {
       name: name,
       email: email
@@ -50,7 +46,15 @@ export default function Home() {
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
-            <Button variant="contained" onClick={handleLoginButton}>Login</Button>
+            <Button 
+              variant="contained"
+              onClick={() => {
+                handleLoginButton()
+                router.push('/search')
+              }}
+            >
+              Login
+            </Button>
           </CardContent>
         </Card>
       </main>

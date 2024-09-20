@@ -152,10 +152,10 @@ export default function Search() {
                   title={`${dog.name}, ${dog.age} year old ${dog.breed}`}
                 />
                 <CardContent>
-                  <Typography>{dog.name}</Typography>
-                  <Typography>{dog.breed}</Typography>
-                  <Typography>{dog.age}</Typography>
-                  <Typography>{dog.zip_code}</Typography>
+                  <Typography>Name: {dog.name}</Typography>
+                  <Typography>Breed: {dog.breed}</Typography>
+                  <Typography>Age: {dog.age}</Typography>
+                  <Typography>Location (Zip Code): {dog.zip_code}</Typography>
                 </CardContent>
                 <CardActions>
                   <IconButton>

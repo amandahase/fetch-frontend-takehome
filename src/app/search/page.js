@@ -79,6 +79,7 @@ const dogBreeds = ["Pitbull", "Border Collie", "Australian Shephard", "Husky", "
 export default function Search() {
   const [dogsList, setdogsList] = useState(dogs)
   const [dogBreedFilter, setDogBreedFilter] = useState([]);
+  const [favoriteDogsList, setFavoriteDogsList] = useState([]);
 
   const handleChangeDogBreedFilter = (event) => {
     const {
@@ -101,49 +102,67 @@ export default function Search() {
     setDogBreedFilter([])
   }
 
+  const handleDogMatching = () => {
+    if (!favoriteDogsList.length) {
+      alert("You don't have any favorite dogs yet!")
+    } else {
+      alert("We're gonna find your match, yay!")
+    }
+  }
+
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="demo-multiple-chip-label">Filter By Breed</InputLabel>
-          <Select
-            labelId="demo-multiple-chip-label"
-            id="demo-multiple-chip"
-            multiple
-            value={dogBreedFilter}
-            onChange={handleChangeDogBreedFilter}
-            input={<OutlinedInput id="select-multiple-chip" label="Filter By Breed" />}
-            renderValue={(selected) => (
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                {selected.map((value) => (
-                  <Chip key={value} label={value} />
-                ))}
-              </Box>
-            )}
-            sx={{ backgroundColor: "white" }}
-          >
-            {dogBreeds.map((breed) => (
-              <MenuItem
-                key={breed}
-                value={breed}
+        <div className={styles.pageOptions}>
+          <div className={styles.filterWrap}>
+            <FormControl sx={{ m: 1, width: 300 }}>
+              <InputLabel id="demo-multiple-chip-label">Filter By Breed</InputLabel>
+              <Select
+                labelId="demo-multiple-chip-label"
+                id="demo-multiple-chip"
+                multiple
+                value={dogBreedFilter}
+                onChange={handleChangeDogBreedFilter}
+                input={<OutlinedInput id="select-multiple-chip" label="Filter By Breed" />}
+                renderValue={(selected) => (
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                    {selected.map((value) => (
+                      <Chip key={value} label={value} />
+                    ))}
+                  </Box>
+                )}
+                className={styles.filterField}
               >
-                {breed}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <Button
-          variant="contained"
-          onClick={handleFilterList}
-        >
-          Filter List
-        </Button>
-        <Button
-          variant="text"
-          onClick={handleRemoveFilters}
-        >
-          Remove Filters
-        </Button>
+                {dogBreeds.map((breed) => (
+                  <MenuItem
+                    key={breed}
+                    value={breed}
+                  >
+                    {breed}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <Button
+              variant="contained"
+              onClick={handleFilterList}
+            >
+              Filter List
+            </Button>
+            <Button
+              variant="text"
+              onClick={handleRemoveFilters}
+            >
+              Remove Filters
+            </Button>
+          </div>
+          <Button
+            variant="outlined"
+            onClick={handleDogMatching}
+          >
+            Find My Dog Match
+          </Button>
+        </div>
         <Grid container spacing={3}>
           {dogsList.map((dog) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={dog.id}>

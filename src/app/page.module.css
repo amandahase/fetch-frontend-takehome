@@ -105,6 +105,23 @@ a.secondary {
   flex-shrink: 0;
 }
 
+.filterWrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.filterField {
+  background-color: white;
+  margin-right: 20px;
+}
+
+.pageOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   a.primary:hover {

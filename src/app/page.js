@@ -13,18 +13,18 @@ export default function Home() {
 
   const router = useRouter()
  
-  const handleLoginButton = async () => {
+  const handleLoginButton = () => {
     const requestBody = {
       name: name,
       email: email
     }
 
     axios.post('https://frontend-take-home-service.fetch.com/auth/login', requestBody, { withCredentials: true })
-    .then(function (response) {
-      console.log(response);
+    .then((response) => {
+      console.log(response); // TODO: Remove/replace this
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch((error) => {
+      console.log(error); // TODO: Remove/replace this
     });
   }
 

@@ -1,6 +1,6 @@
 'use client';
 import styles from "../page.module.css";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 import Grid from '@mui/material/Grid2';
 import {
@@ -74,12 +74,27 @@ const dogs = [
   },
 ]
 
-const dogBreeds = ["Pitbull", "Border Collie", "Australian Shephard", "Husky", "Golden Retriever", "Chocolate Lab"]
+const axios = require('axios');
 
 export default function Search() {
-  const [dogsList, setdogsList] = useState(dogs)
+  const [dogsList, setdogsList] = useState(dogs);
+  const [dogBreeds, setDogBreeds] = useState([]);
   const [dogBreedFilter, setDogBreedFilter] = useState([]);
   const [favoriteDogsList, setFavoriteDogsList] = useState([]);
+
+  useEffect(() => {
+    getDogBreeds()
+  }, [])
+
+  const getDogBreeds = () => {
+    axios.get('https://frontend-take-home-service.fetch.com/dogs/breeds', { withCredentials: true })
+    .then((response) => {
+      setDogBreeds(response.data)
+    })
+    .catch((error) => {
+      console.log(error); // TODO: Remove/replace this
+    });
+  }
 
   const handleChangeDogBreedFilter = (event) => {
     const {
@@ -165,7 +180,7 @@ export default function Search() {
                 )}
                 className={styles.filterField}
               >
-                {dogBreeds.map((breed) => (
+                {dogBreeds?.map((breed) => (
                   <MenuItem
                     key={breed}
                     value={breed}

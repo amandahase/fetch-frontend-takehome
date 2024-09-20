@@ -23,68 +23,95 @@ import {
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
-const dogs = [
-  {
-    id: "1111",
-    img: "",
-    name: "Daisy",
-    age: 2,
-    zip_code: "12345",
-    breed: "Chocolate Lab",
-  },
-  {
-    id: "2222",
-    img: "",
-    name: "Larry",
-    age: 4,
-    zip_code: "43211",
-    breed: "Golden Retriever",
-  },
-  {
-    id: "3333",
-    img: "",
-    name: "Luke",
-    age: 1,
-    zip_code: "98765",
-    breed: "Husky",
-  },
-  {
-    id: "4444",
-    img: "",
-    name: "Freya",
-    age: 6,
-    zip_code: "76585",
-    breed: "Australian Shephard",
-  },
-  {
-    id: "5555",
-    img: "",
-    name: "Callie",
-    age: 2,
-    zip_code: "76854",
-    breed: "Border Collie",
-  },
-  {
-    id: "6666",
-    img: "",
-    name: "Snickers",
-    age: 4,
-    zip_code: "34567",
-    breed: "Pitbull",
-  },
-]
+// const dogs = [
+//   {
+//     id: "1111",
+//     img: "",
+//     name: "Daisy",
+//     age: 2,
+//     zip_code: "12345",
+//     breed: "Chocolate Lab",
+//   },
+//   {
+//     id: "2222",
+//     img: "",
+//     name: "Larry",
+//     age: 4,
+//     zip_code: "43211",
+//     breed: "Golden Retriever",
+//   },
+//   {
+//     id: "3333",
+//     img: "",
+//     name: "Luke",
+//     age: 1,
+//     zip_code: "98765",
+//     breed: "Husky",
+//   },
+//   {
+//     id: "4444",
+//     img: "",
+//     name: "Freya",
+//     age: 6,
+//     zip_code: "76585",
+//     breed: "Australian Shephard",
+//   },
+//   {
+//     id: "5555",
+//     img: "",
+//     name: "Callie",
+//     age: 2,
+//     zip_code: "76854",
+//     breed: "Border Collie",
+//   },
+//   {
+//     id: "6666",
+//     img: "",
+//     name: "Snickers",
+//     age: 4,
+//     zip_code: "34567",
+//     breed: "Pitbull",
+//   },
+// ]
 
 const axios = require('axios');
 
 export default function Search() {
-  const [dogsList, setdogsList] = useState(dogs);
+  const [dogsList, setDogsList] = useState([]);
   const [dogBreeds, setDogBreeds] = useState([]);
   const [dogBreedFilter, setDogBreedFilter] = useState([]);
   const [favoriteDogsList, setFavoriteDogsList] = useState([]);
 
   useEffect(() => {
     getDogBreeds()
+    getAllDogsList()
   }, [])
+
+  const getAllDogsList = async () => {
+    let resultDogIds
+    // TODO: STILL NEED TO FIGURE OUT WHY PARAMS WON'T GO THROUGH IN GET REQUEST HERE
+    // GETTING EITHER A 500 OR A 401 ERROR IN RETURN WHEN I TRY
+    const params = {
+      size: 10000,
+      from: 25
+    }
+
+    await axios.get('https://frontend-take-home-service.fetch.com/dogs/search', { withCredentials: true, })
+    .then((response) => {
+      resultDogIds = response.data.resultIds
+    })
+    .catch((error) => {
+      console.log(error); // TODO: Remove/replace this
+    });
+
+    await axios.post('https://frontend-take-home-service.fetch.com/dogs', resultDogIds , { withCredentials: true })
+    .then((response) => {
+      setDogsList(response.data)
+    })
+    .catch((error) => {
+      console.log(error); // TODO: Remove/replace this
+    });
+  }
 
   const getDogBreeds = () => {
     axios.get('https://frontend-take-home-service.fetch.com/dogs/breeds', { withCredentials: true })
@@ -211,7 +238,7 @@ export default function Search() {
           </Button>
         </div>
         <Grid container spacing={3}>
-          {dogsList.map((dog) => (
+          {dogsList?.map((dog) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={dog.id}>
               <Card>
                 <CardMedia

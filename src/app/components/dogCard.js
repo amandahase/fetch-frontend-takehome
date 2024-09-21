@@ -25,9 +25,13 @@ export default function DogCard(props) {
         <Typography>Location (Zip Code): {props.dog.zip_code}</Typography>
       </CardContent>
       <CardActions>
-        <IconButton onClick={() => props.handleFavoriteClick(props.dog)}>
-          {props.displayFavoriteIcons(props.dog)}
-        </IconButton>
+        {props.handleFavoriteClick ?
+          <IconButton onClick={() => props.handleFavoriteClick(props.dog)}>
+            {props.displayFavoriteIcons(props.dog)}
+          </IconButton>
+        :
+          props.displayFavoriteIcons(props.dog)
+      }
       </CardActions>
     </Card>
   );

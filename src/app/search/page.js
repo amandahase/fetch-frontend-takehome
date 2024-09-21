@@ -13,7 +13,8 @@ import {
   MenuItem,
   OutlinedInput,
   Button,
-  Pagination
+  Pagination,
+  Typography
 } from '@mui/material';
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -28,9 +29,11 @@ export default function Search() {
   const [favoriteDogsList, setFavoriteDogsList] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(1);
+  const [foundDogMatch, setFoundDogMatch] = useState(false)
 
   useEffect(() => {
     getDogBreeds()
+    handleGetDogsList()
   }, [])
 
   const handleGetDogsList = async () => {
@@ -84,13 +87,32 @@ export default function Search() {
   const handleRemoveFilters = () => {
     setDogsList([])
     setDogBreedFilter([])
+    setPage(1)
+    setPageCount(0)
   }
 
-  const handleDogMatching = () => {
+  const handleDogMatching = async () => {
+    let dogMatchId
     if (!favoriteDogsList.length) {
       alert("You don't have any favorite dogs yet!")
     } else {
-      alert("We're gonna find your match, yay!")
+      await axios.post('https://frontend-take-home-service.fetch.com/dogs/match', favoriteDogsList, { withCredentials: true })
+      .then((response) => {
+        dogMatchId = [response.data.match]
+      })
+      .catch((error) => {
+        console.log(error); // TODO: Remove/replace this
+      });
+
+      await axios.post('https://frontend-take-home-service.fetch.com/dogs', dogMatchId , { withCredentials: true })
+      .then((response) => {
+        setFoundDogMatch(true)
+        setDogsList(response.data)
+        console.log("match", response)
+      })
+      .catch((error) => {
+        console.log(error); // TODO: Remove/replace this
+      });
     }
   }
 
@@ -118,6 +140,21 @@ export default function Search() {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+        {foundDogMatch ? 
+          <div>
+            <Typography>Your dog match is...</Typography>
+            {dogsList?.map((dog) => (
+              <Grid size={{ md: 8 }} key={dog.id}>
+                <DogCard
+                  dog={dog}
+                  handleFavoriteClick={handleFavoriteClick}
+                  displayFavoriteIcons={displayFavoriteIcons}
+                />
+              </Grid>
+            ))}
+          </div>
+        :
+        <div>
         <div className={styles.pageOptions}>
           <div className={styles.filterWrap}>
             <FormControl sx={{ m: 1, width: 300 }}>
@@ -184,6 +221,8 @@ export default function Search() {
           }
         </Grid>
         <Pagination count={pageCount} page={page} onChange={handlePageChange} color="primary" />
+        </div>
+}
       </main>
     </div>
   );

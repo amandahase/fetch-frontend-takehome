@@ -28,6 +28,7 @@ const theme = createTheme({
     card: {
       background: NIGHT,
       icon: CORAL,
+      text: NIGHT
     }
   },
   components: {

@@ -1,8 +1,7 @@
 'use client';
-import styles from "../page.module.css";
+import { StyledCard, classes } from "./dogCardStyles";
 
 import {
-  Card,
   CardMedia,
   CardContent,
   CardActions,
@@ -12,27 +11,27 @@ import {
 
 export default function DogCard(props) {
   return (
-    <Card>
+    <StyledCard>
       <CardMedia
         sx={{ height: 140 }}
         image={props.dog.img}
         title={`${props.dog.name}, ${props.dog.age} year old ${props.dog.breed}`}
       />
       <CardContent>
-        <Typography>Name: {props.dog.name}</Typography>
-        <Typography>Breed: {props.dog.breed}</Typography>
-        <Typography>Age: {props.dog.age}</Typography>
-        <Typography>Location (Zip Code): {props.dog.zip_code}</Typography>
+        <Typography className={classes.cardText}><strong>Name:</strong> {props.dog.name}</Typography>
+        <Typography className={classes.cardText}><strong>Breed:</strong> {props.dog.breed}</Typography>
+        <Typography className={classes.cardText}><strong>Age:</strong> {props.dog.age}</Typography>
+        <Typography className={classes.cardText}><strong>Location (Zip Code):</strong> {props.dog.zip_code}</Typography>
       </CardContent>
       <CardActions>
         {props.handleFavoriteClick ?
-          <IconButton onClick={() => props.handleFavoriteClick(props.dog)}>
+          <IconButton className={classes.icon} onClick={() => props.handleFavoriteClick(props.dog)}>
             {props.displayFavoriteIcons(props.dog)}
           </IconButton>
         :
           props.displayFavoriteIcons(props.dog)
       }
       </CardActions>
-    </Card>
+    </StyledCard>
   );
 }

@@ -13,6 +13,14 @@ const theme = createTheme({
   typography: {
     fontFamily: 'var(--font-roboto)',
   },
+  breakpoints: {
+    values: {
+      mobile: 0,
+      tablet: 768,
+      laptop: 1024,
+      desktop: 1280,
+    },
+  },
   palette: {
     background: {
       default: NIGHT,

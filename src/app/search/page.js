@@ -167,71 +167,75 @@ console.log(sort)
         :
           <div>
             <div className={classes.filterSection}>
-              <FormControl sx={{ m: 1, width: "100%", margin: 0 }}>
-                <InputLabel id="filter-by-breed-label">Filter By Breed</InputLabel>
-                <Select
-                  labelId="filter-by-breed-label"
-                  id="filter-by-breed"
-                  multiple
-                  value={dogBreedFilter}
-                  onChange={handleChangeDogBreedFilter}
-                  input={<OutlinedInput id="select-multiple-chip" label="Filter By Breed" />}
-                  renderValue={(selected) => (
-                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                      {selected.map((value) => (
-                        <Chip key={value} label={value} />
-                      ))}
-                    </Box>
-                  )}
-                >
-                  {dogBreeds?.map((breed) => (
-                    <MenuItem
-                      key={breed}
-                      value={breed}
-                    >
-                      {breed}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-              <div className={classes.filterButtonWrap}>
-                <Button
-                  variant="contained"
-                  onClick={handleGetDogsList}
-                  className={classes.filterButton}
-                >
-                  Search Dogs
-                </Button>
-                <Button
-                  variant="outlined"
-                  onClick={handleRemoveFilters}
-                  className={classes.filterButton}
-                >
-                  Remove Filters
-                </Button>
+              <div className={classes.filterSectionWrap}>
+                <FormControl className={classes.filterSelect}>
+                  <InputLabel id="filter-by-breed-label">Filter By Breed</InputLabel>
+                  <Select
+                    labelId="filter-by-breed-label"
+                    id="filter-by-breed"
+                    multiple
+                    value={dogBreedFilter}
+                    onChange={handleChangeDogBreedFilter}
+                    input={<OutlinedInput id="select-multiple-chip" label="Filter By Breed" />}
+                    renderValue={(selected) => (
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                        {selected.map((value) => (
+                          <Chip key={value} label={value} />
+                        ))}
+                      </Box>
+                    )}
+                  >
+                    {dogBreeds?.map((breed) => (
+                      <MenuItem
+                        key={breed}
+                        value={breed}
+                      >
+                        {breed}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <div className={classes.filterButtonWrap}>
+                  <Button
+                    variant="contained"
+                    onClick={handleGetDogsList}
+                    className={classes.filterButton}
+                  >
+                    Search Dogs
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    onClick={handleRemoveFilters}
+                    className={classes.filterButton}
+                  >
+                    Remove Filters
+                  </Button>
+                </div>
               </div>
-              <FormControl fullWidth>
-                <InputLabel id="sort-dogs-label">Sort Dogs By Name</InputLabel>
-                <Select
-                  labelId="sort-dogs-label"
-                  id="sort-dogs"
-                  value={sort}
-                  label="Sort Dogs By Name"
-                  onChange={handleChangeSort}
-                >
-                  <MenuItem value={"name:asc"}>By Name (A-Z)</MenuItem>
-                  <MenuItem value={"name:desc"}>By Name (Z-A)</MenuItem>
-                  <MenuItem value={"breed:asc"}>By Breed (A-Z)</MenuItem>
-                  <MenuItem value={"breed:desc"}>By Breed (Z-A)</MenuItem>
-                  <MenuItem value={"age:asc"}>By Age (Asc)</MenuItem>
-                  <MenuItem value={"age:desc"}>By Age (Desc)</MenuItem>
-                </Select>
-              </FormControl>
+              <div className={classes.sortSelectWrap}>
+                <FormControl className={classes.sortSelect}>
+                  <InputLabel id="sort-dogs-label">Sort Dogs By Name</InputLabel>
+                  <Select
+                    labelId="sort-dogs-label"
+                    id="sort-dogs"
+                    value={sort}
+                    label="Sort Dogs By Name"
+                    onChange={handleChangeSort}
+                  >
+                    <MenuItem value={"name:asc"}>By Name (A-Z)</MenuItem>
+                    <MenuItem value={"name:desc"}>By Name (Z-A)</MenuItem>
+                    <MenuItem value={"breed:asc"}>By Breed (A-Z)</MenuItem>
+                    <MenuItem value={"breed:desc"}>By Breed (Z-A)</MenuItem>
+                    <MenuItem value={"age:asc"}>By Age (Asc)</MenuItem>
+                    <MenuItem value={"age:desc"}>By Age (Desc)</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
             </div>
             <Grid container spacing={3}>
               {dogsList.length ? 
                 dogsList?.map((dog) => (
-                  <Grid size={{ xs: 12, sm: 6, md: 4 }} key={dog.id}>
+                  <Grid size={{ mobile: 12, tablet: 6, laptop: 4 }} key={dog.id}>
                     <DogCard
                       dog={dog}
                       handleFavoriteClick={handleFavoriteClick}

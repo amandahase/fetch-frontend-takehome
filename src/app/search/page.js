@@ -20,6 +20,7 @@ import {
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const axios = require('axios');
 
@@ -144,7 +145,13 @@ export default function Search() {
     setSort(event.target.value)
     await handleGetDogsList() // Works except for when you change the sort value
   }
-console.log(sort)
+
+  const handleBackToSearch = async () => {
+    setFavoriteDogsList([])
+    await handleGetDogsList()
+    setFoundDogMatch(false)
+  }
+
   return (
     <div>
       <Nav 
@@ -152,10 +159,23 @@ console.log(sort)
       />
       <StyledMain className={classes.main}>
         {foundDogMatch ? 
-          <div>
-            <Typography variant="h1" className={classes.matchHeading}>Your dog match is...</Typography>
+          <div className={classes.matchSection}>
+            <Button
+              variant="text"
+              className={classes.backButton}
+              startIcon={<ArrowBackIosIcon />}
+              onClick={handleBackToSearch}
+            >
+              Back to Search
+            </Button>
+            <Typography
+              variant="h1"
+              className={classes.matchHeading}
+            >
+              Your dog match is...
+            </Typography>
             {dogsList?.map((dog) => (
-              <Grid size={{ md: 8 }} key={dog.id}>
+              <Grid size={{ mobile: 12, tablet: 6, laptop: 4 }} key={dog.id}>
                 <DogCard
                   dog={dog}
                   handleFavoriteClick={handleFavoriteClick}
@@ -176,7 +196,7 @@ console.log(sort)
                     multiple
                     value={dogBreedFilter}
                     onChange={handleChangeDogBreedFilter}
-                    input={<OutlinedInput id="select-multiple-chip" label="Filter By Breed" />}
+                    input={<OutlinedInput id="filter-by-breed" label="Filter By Breed" />}
                     renderValue={(selected) => (
                       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                         {selected.map((value) => (
@@ -247,7 +267,13 @@ console.log(sort)
                 "No search results"
               }
             </Grid>
-            <Pagination count={pageCount} page={page} onChange={handlePageChange} color="primary" className={classes.pagination} />
+            <Pagination
+              count={pageCount}
+              page={page}
+              onChange={handlePageChange}
+              color="primary"
+              className={classes.pagination}
+            />
           </div>
         }
       </StyledMain>

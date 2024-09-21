@@ -11,7 +11,9 @@ export const classes = {
   filterButtonWrap: `${PREFIX}-filterButtonWrap`,
   filterButton: `${PREFIX}-filterButton`,
   pagination: `${PREFIX}-pagination`,
-  matchHeading: `${PREFIX}-matchHeading`
+  matchSection: `${PREFIX}-matchSection`,
+  backButton: `${PREFIX}-backButton`,
+  matchHeading: `${PREFIX}-matchHeading`,
 };
 
 export const StyledMain = styled("main")(({ theme }) => ({
@@ -75,10 +77,22 @@ export const StyledMain = styled("main")(({ theme }) => ({
     justifyContent: "center",
     marginTop: 40
   },
+  [`& .${classes.matchSection}`]: {
+    width: "90%",
+    maxWidth: 600,
+    margin: "auto"
+  },
+  [`& .${classes.backButton}`]: {
+    marginBottom: 40
+  },
   [`& .${classes.matchHeading}`]: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
-    textAlign: "center"
+    textAlign: "center",
+    [theme.breakpoints.up('tablet')]: {
+      fontSize: 32,
+      marginBottom: 30,
+    },
   },
 }));

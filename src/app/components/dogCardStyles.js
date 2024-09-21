@@ -3,13 +3,14 @@ import { Card } from '@mui/material';
 
 export const PREFIX = "DogCard";
 export const classes = {
+  image: `${PREFIX}-image`,
   cardText: `${PREFIX}-cardText`,
   icon: `${PREFIX}-icon`,
 };
 
 export const StyledCard = styled(Card)(({ theme }) => ({
-  [`&.${classes.nav}`]: {
-
+  [`& .${classes.image}`]: {
+    height: "250px"
   },
   [`& .${classes.cardText}`]: {
     color: theme.palette.card.text

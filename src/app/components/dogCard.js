@@ -13,9 +13,9 @@ export default function DogCard(props) {
   return (
     <StyledCard>
       <CardMedia
-        sx={{ height: 140 }}
         image={props.dog.img}
         title={`${props.dog.name}, ${props.dog.age} year old ${props.dog.breed}`}
+        className={classes.image}
       />
       <CardContent>
         <Typography className={classes.cardText}><strong>Name:</strong> {props.dog.name}</Typography>

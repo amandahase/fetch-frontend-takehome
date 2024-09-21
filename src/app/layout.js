@@ -4,6 +4,8 @@ import { Roboto } from 'next/font/google';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme/theme';
 
+import Nav from "./components/nav";
+
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
@@ -22,6 +24,7 @@ export default function RootLayout({ children }) {
       <body className={roboto.variable}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
+            <Nav />
             {children}
           </ThemeProvider>
         </AppRouterCacheProvider>

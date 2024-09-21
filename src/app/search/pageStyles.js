@@ -20,7 +20,8 @@ export const StyledMain = styled("main")(({ theme }) => ({
   },
   [`& .${classes.filterButtonWrap}`]: {
     display: "flex",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    marginBottom: 30
   },
   [`& .${classes.filterButton}`]: {
     width: "48%"

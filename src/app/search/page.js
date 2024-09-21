@@ -31,6 +31,7 @@ export default function Search() {
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(1);
   const [foundDogMatch, setFoundDogMatch] = useState(false)
+  const [sort, setSort] = useState("breed:asc")
 
   useEffect(() => {
     getDogBreeds()
@@ -42,7 +43,8 @@ export default function Search() {
     let resultDogIds
     const params = {
       breeds: dogBreedFilter,
-      from: fromValue
+      from: fromValue,
+      sort: sort
     }
 
     await axios.get('https://frontend-take-home-service.fetch.com/dogs/search', { params: params, withCredentials: true, })
@@ -51,6 +53,7 @@ export default function Search() {
       if (pageCount === 0) {
         setPageCount(Math.ceil(response.data.total/25))
       }
+      console.log(response)
     })
     .catch((error) => {
       console.log(error); // TODO: Remove/replace this
@@ -137,6 +140,11 @@ export default function Search() {
     handleGetDogsList()
   }
 
+  const handleChangeSort = async (event) => {
+    setSort(event.target.value)
+    await handleGetDogsList() // Works except for when you change the sort value
+  }
+console.log(sort)
   return (
     <div>
       <Nav 
@@ -160,10 +168,10 @@ export default function Search() {
           <div>
             <div className={classes.filterSection}>
               <FormControl sx={{ m: 1, width: "100%", margin: 0 }}>
-                <InputLabel id="demo-multiple-chip-label">Filter By Breed</InputLabel>
+                <InputLabel id="filter-by-breed-label">Filter By Breed</InputLabel>
                 <Select
-                  labelId="demo-multiple-chip-label"
-                  id="demo-multiple-chip"
+                  labelId="filter-by-breed-label"
+                  id="filter-by-breed"
                   multiple
                   value={dogBreedFilter}
                   onChange={handleChangeDogBreedFilter}
@@ -202,6 +210,23 @@ export default function Search() {
                   Remove Filters
                 </Button>
               </div>
+              <FormControl fullWidth>
+                <InputLabel id="sort-dogs-label">Sort Dogs By Name</InputLabel>
+                <Select
+                  labelId="sort-dogs-label"
+                  id="sort-dogs"
+                  value={sort}
+                  label="Sort Dogs By Name"
+                  onChange={handleChangeSort}
+                >
+                  <MenuItem value={"name:asc"}>By Name (A-Z)</MenuItem>
+                  <MenuItem value={"name:desc"}>By Name (Z-A)</MenuItem>
+                  <MenuItem value={"breed:asc"}>By Breed (A-Z)</MenuItem>
+                  <MenuItem value={"breed:desc"}>By Breed (Z-A)</MenuItem>
+                  <MenuItem value={"age:asc"}>By Age (Asc)</MenuItem>
+                  <MenuItem value={"age:desc"}>By Age (Desc)</MenuItem>
+                </Select>
+              </FormControl>
             </div>
             <Grid container spacing={3}>
               {dogsList.length ? 

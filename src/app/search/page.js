@@ -45,7 +45,6 @@ export default function Search() {
     .then((response) => {
       resultDogIds = response.data.resultIds
       if (pageCount === 0) {
-        console.log("here")
         setPageCount(Math.ceil(response.data.total/25))
       }
     })

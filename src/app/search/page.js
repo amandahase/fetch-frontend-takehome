@@ -154,75 +154,75 @@ export default function Search() {
             ))}
           </div>
         :
-        <div>
-        <div className={styles.pageOptions}>
-          <div className={styles.filterWrap}>
-            <FormControl sx={{ m: 1, width: 300 }}>
-              <InputLabel id="demo-multiple-chip-label">Filter By Breed</InputLabel>
-              <Select
-                labelId="demo-multiple-chip-label"
-                id="demo-multiple-chip"
-                multiple
-                value={dogBreedFilter}
-                onChange={handleChangeDogBreedFilter}
-                input={<OutlinedInput id="select-multiple-chip" label="Filter By Breed" />}
-                renderValue={(selected) => (
-                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                    {selected.map((value) => (
-                      <Chip key={value} label={value} />
-                    ))}
-                  </Box>
-                )}
-                className={styles.filterField}
-              >
-                {dogBreeds?.map((breed) => (
-                  <MenuItem
-                    key={breed}
-                    value={breed}
+          <div>
+            <div className={styles.pageOptions}>
+              <div className={styles.filterWrap}>
+                <FormControl sx={{ m: 1, width: 300 }}>
+                  <InputLabel id="demo-multiple-chip-label">Filter By Breed</InputLabel>
+                  <Select
+                    labelId="demo-multiple-chip-label"
+                    id="demo-multiple-chip"
+                    multiple
+                    value={dogBreedFilter}
+                    onChange={handleChangeDogBreedFilter}
+                    input={<OutlinedInput id="select-multiple-chip" label="Filter By Breed" />}
+                    renderValue={(selected) => (
+                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                        {selected.map((value) => (
+                          <Chip key={value} label={value} />
+                        ))}
+                      </Box>
+                    )}
+                    className={styles.filterField}
                   >
-                    {breed}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <Button
-              variant="contained"
-              onClick={handleGetDogsList}
-            >
-              Search Dogs
-            </Button>
-            <Button
-              variant="text"
-              onClick={handleRemoveFilters}
-            >
-              Remove Filters
-            </Button>
+                    {dogBreeds?.map((breed) => (
+                      <MenuItem
+                        key={breed}
+                        value={breed}
+                      >
+                        {breed}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+                <Button
+                  variant="contained"
+                  onClick={handleGetDogsList}
+                >
+                  Search Dogs
+                </Button>
+                <Button
+                  variant="text"
+                  onClick={handleRemoveFilters}
+                >
+                  Remove Filters
+                </Button>
+              </div>
+              <Button
+                variant="outlined"
+                onClick={handleDogMatching}
+              >
+                Find My Dog Match
+              </Button>
+            </div>
+            <Grid container spacing={3}>
+              {dogsList.length ? 
+                dogsList?.map((dog) => (
+                  <Grid size={{ xs: 12, sm: 6, md: 4 }} key={dog.id}>
+                    <DogCard
+                      dog={dog}
+                      handleFavoriteClick={handleFavoriteClick}
+                      displayFavoriteIcons={displayFavoriteIcons}
+                    />
+                  </Grid>
+                ))
+              :
+                "No search results"
+              }
+            </Grid>
+            <Pagination count={pageCount} page={page} onChange={handlePageChange} color="primary" />
           </div>
-          <Button
-            variant="outlined"
-            onClick={handleDogMatching}
-          >
-            Find My Dog Match
-          </Button>
-        </div>
-        <Grid container spacing={3}>
-          {dogsList.length ? 
-            dogsList?.map((dog) => (
-              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={dog.id}>
-                <DogCard
-                  dog={dog}
-                  handleFavoriteClick={handleFavoriteClick}
-                  displayFavoriteIcons={displayFavoriteIcons}
-                />
-              </Grid>
-            ))
-          :
-            "No search results"
-          }
-        </Grid>
-        <Pagination count={pageCount} page={page} onChange={handlePageChange} color="primary" />
-        </div>
-}
+        }
       </main>
     </div>
   );

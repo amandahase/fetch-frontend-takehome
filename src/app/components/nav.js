@@ -1,5 +1,5 @@
 'use client';
-import styles from "./nav.module.css";
+// import styles from "./nav.module.css";
 
 import {
   IconButton
@@ -8,13 +8,15 @@ import {
 import PetsIcon from '@mui/icons-material/Pets';
 import LogoutIcon from '@mui/icons-material/Logout';
 
+import { classes, StyledNav } from "./navStyles"
+
 export default function Nav() {
   return (
-    <nav className={styles.nav}>
-      <PetsIcon />
-      <IconButton>
+    <StyledNav className={classes.nav}>
+      <PetsIcon className={classes.icon} />
+      <IconButton className={classes.iconButton}>
         <LogoutIcon />
       </IconButton>
-    </nav>
+    </StyledNav>
   );
 }

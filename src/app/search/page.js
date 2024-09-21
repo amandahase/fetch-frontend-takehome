@@ -12,7 +12,8 @@ import {
   Box,
   MenuItem,
   OutlinedInput,
-  Button
+  Button,
+  Pagination
 } from '@mui/material';
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -25,20 +26,28 @@ export default function Search() {
   const [dogBreeds, setDogBreeds] = useState([]);
   const [dogBreedFilter, setDogBreedFilter] = useState([]);
   const [favoriteDogsList, setFavoriteDogsList] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     getDogBreeds()
   }, [])
 
   const handleGetDogsList = async () => {
+    const fromValue = page * 25;
     let resultDogIds
     const params = {
-      breeds: dogBreedFilter
+      breeds: dogBreedFilter,
+      from: fromValue
     }
 
     await axios.get('https://frontend-take-home-service.fetch.com/dogs/search', { params: params, withCredentials: true, })
     .then((response) => {
       resultDogIds = response.data.resultIds
+      if (pageCount === 0) {
+        console.log("here")
+        setPageCount(Math.ceil(response.data.total/25))
+      }
     })
     .catch((error) => {
       console.log(error); // TODO: Remove/replace this
@@ -100,6 +109,11 @@ export default function Search() {
     } else {
       return <FavoriteBorderIcon />
     }
+  }
+
+  const handlePageChange = (event, value) => {
+    setPage(value)
+    handleGetDogsList()
   }
 
   return (
@@ -170,6 +184,7 @@ export default function Search() {
             "No search results"
           }
         </Grid>
+        <Pagination count={pageCount} page={page} onChange={handlePageChange} color="primary" />
       </main>
     </div>
   );

@@ -4,7 +4,8 @@ export const PREFIX = "NavMenu";
 export const classes = {
   nav: `${PREFIX}-nav`,
   iconButton: `${PREFIX}-iconButton`,
-  icon: `${PREFIX}-icon`
+  icon: `${PREFIX}-icon`,
+  button: `${PREFIX}-button`
 };
 
 export const StyledNav = styled("nav")(({ theme }) => ({
@@ -13,8 +14,11 @@ export const StyledNav = styled("nav")(({ theme }) => ({
     justifyContent: "space-between",
     alignItems: "center",
     padding: "20px",
-    height: "50px",
+    height: "70px",
     backgroundColor: theme.palette.background.default
+  },
+  [`& .${classes.button}`]: {
+    marginRight: 10
   },
   [`& .${classes.iconButton}`]: {
     color: theme.palette.card.icon

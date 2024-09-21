@@ -1,8 +1,8 @@
 'use client';
-// import styles from "./nav.module.css";
 
 import {
-  IconButton
+  IconButton,
+  Button
 } from '@mui/material';
 
 import PetsIcon from '@mui/icons-material/Pets';
@@ -10,13 +10,22 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 import { classes, StyledNav } from "./navStyles"
 
-export default function Nav() {
+export default function Nav(props) {
   return (
     <StyledNav className={classes.nav}>
       <PetsIcon className={classes.icon} />
-      <IconButton className={classes.iconButton}>
-        <LogoutIcon />
-      </IconButton>
+      <div>
+        <Button
+          variant="contained"
+          onClick={props.handleDogMatching}
+          className={classes.button}
+        >
+          Find My Dog Match
+        </Button>
+        <IconButton className={classes.iconButton} aria-label="logout">
+          <LogoutIcon />
+        </IconButton>
+      </div>
     </StyledNav>
   );
 }

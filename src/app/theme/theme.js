@@ -17,6 +17,9 @@ const theme = createTheme({
     background: {
       default: NIGHT,
     },
+    primary: {
+      main: CORAL
+    },
     text: {
       primary: POWDER,
       secondary: SKY,
@@ -44,6 +47,38 @@ const theme = createTheme({
         root: {
           backgroundColor: POWDER,
           color: NIGHT
+        },
+        text: {
+          background: "none",
+          color: POWDER
+        },
+        outlined: {
+          background: "none",
+          color: POWDER,
+          border: `1px solid ${POWDER}`
+        }
+      }
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          backgroundColor: POWDER,
+          color: NIGHT
+        },
+      }
+    },
+    MuiList: {
+      styleOverrides: {
+        root: {
+          backgroundColor: NIGHT,
+          color: POWDER
+        },
+      }
+    },
+    MuiSelect: {
+      styleOverrides: {
+        iconOutlined: {
+          fill: CORAL
         },
       }
     },

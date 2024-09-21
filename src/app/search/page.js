@@ -157,54 +157,50 @@ export default function Search() {
           </div>
         :
           <div>
-            <div>
-              <div>
-                <FormControl sx={{ m: 1, width: 300 }}>
-                  <InputLabel id="demo-multiple-chip-label">Filter By Breed</InputLabel>
-                  <Select
-                    labelId="demo-multiple-chip-label"
-                    id="demo-multiple-chip"
-                    multiple
-                    value={dogBreedFilter}
-                    onChange={handleChangeDogBreedFilter}
-                    input={<OutlinedInput id="select-multiple-chip" label="Filter By Breed" />}
-                    renderValue={(selected) => (
-                      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                        {selected.map((value) => (
-                          <Chip key={value} label={value} />
-                        ))}
-                      </Box>
-                    )}
-                  >
-                    {dogBreeds?.map((breed) => (
-                      <MenuItem
-                        key={breed}
-                        value={breed}
-                      >
-                        {breed}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
+            <div className={classes.filterSection}>
+              <FormControl sx={{ m: 1, width: "100%", margin: 0 }}>
+                <InputLabel id="demo-multiple-chip-label">Filter By Breed</InputLabel>
+                <Select
+                  labelId="demo-multiple-chip-label"
+                  id="demo-multiple-chip"
+                  multiple
+                  value={dogBreedFilter}
+                  onChange={handleChangeDogBreedFilter}
+                  input={<OutlinedInput id="select-multiple-chip" label="Filter By Breed" />}
+                  renderValue={(selected) => (
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                      {selected.map((value) => (
+                        <Chip key={value} label={value} />
+                      ))}
+                    </Box>
+                  )}
+                >
+                  {dogBreeds?.map((breed) => (
+                    <MenuItem
+                      key={breed}
+                      value={breed}
+                    >
+                      {breed}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              <div className={classes.filterButtonWrap}>
                 <Button
                   variant="contained"
                   onClick={handleGetDogsList}
+                  className={classes.filterButton}
                 >
                   Search Dogs
                 </Button>
                 <Button
-                  variant="text"
+                  variant="outlined"
                   onClick={handleRemoveFilters}
+                  className={classes.filterButton}
                 >
                   Remove Filters
                 </Button>
               </div>
-              <Button
-                variant="outlined"
-                onClick={handleDogMatching}
-              >
-                Find My Dog Match
-              </Button>
             </div>
             <Grid container spacing={3}>
               {dogsList.length ? 
@@ -221,7 +217,7 @@ export default function Search() {
                 "No search results"
               }
             </Grid>
-            <Pagination count={pageCount} page={page} onChange={handlePageChange} color="primary" />
+            <Pagination count={pageCount} page={page} onChange={handlePageChange} color="primary" className={classes.pagination} />
           </div>
         }
       </StyledMain>

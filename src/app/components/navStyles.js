@@ -13,12 +13,13 @@ export const StyledNav = styled("nav")(({ theme }) => ({
     justifyContent: "space-between",
     alignItems: "center",
     padding: "20px",
-    height: "50px"
+    height: "50px",
+    backgroundColor: theme.palette.background.default
   },
   [`& .${classes.iconButton}`]: {
-    color: theme.palette.text.secondary
+    color: theme.palette.card.icon
   },
   [`& .${classes.icon}`]: {
-    color: theme.palette.text.secondary
+    color: theme.palette.card.icon
   },
 }));

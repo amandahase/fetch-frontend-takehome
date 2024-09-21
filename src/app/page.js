@@ -3,7 +3,10 @@ import styles from "./page.module.css";
 import { useState } from "react"
 import { useRouter } from 'next/navigation'
 
-import { Card, CardContent, TextField, Button, Typography } from '@mui/material';
+import { Card, CardContent, TextField, Button } from '@mui/material';
+import PetsIcon from '@mui/icons-material/Pets';
+
+import { classes, Root } from "./pageStyles"
 
 const axios = require('axios');
 
@@ -29,35 +32,34 @@ export default function Home() {
   }
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Card>
-          <CardContent>
-            <Typography>Login</Typography>
-            <TextField
-              variant="outlined"
-              label="Name"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-            />
-            <TextField
-              variant="outlined"
-              label="Email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-            <Button 
-              variant="contained"
-              onClick={() => {
-                handleLoginButton()
-                router.push('/search')
-              }}
-            >
-              Login
-            </Button>
-          </CardContent>
-        </Card>
+    <Root className={classes.pageContainer}>
+      <main className={classes.main}>
+        <section className={classes.card}>
+          <PetsIcon className={classes.icon} />
+          <TextField
+            variant="outlined"
+            label="Name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
+          <TextField
+            variant="outlined"
+            label="Email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+          <Button 
+            variant="contained"
+            onClick={() => {
+              handleLoginButton()
+              router.push('/search')
+            }}
+            className={classes.button}
+          >
+            Login
+          </Button>
+        </section>
       </main>
-    </div>
+    </Root>
   );
 }

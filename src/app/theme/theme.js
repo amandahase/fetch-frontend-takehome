@@ -2,12 +2,12 @@
 import { createTheme } from '@mui/material/styles';
 
 // Color HEX Codes
-const MIDNIGHT = "#001d44";
-const POLAR = "#f4f9fd";
-const FRENCH_BLUE = "#bee4ff";
-const PIPPIN = "#ffdfdf";
-const DEW_DROP = "#e4f7ff";
-const COBALT = "#0047aa";
+const CERULEAN = "#0077b6";
+const SKY = "#bfd7ea";
+const CORAL = "#fa7268";
+const PINK = "#f1b7a5";
+const POWDER = "#f8f9fa";
+const NIGHT = "#0a2e4e";
 
 const theme = createTheme({
   typography: {
@@ -15,17 +15,38 @@ const theme = createTheme({
   },
   palette: {
     background: {
-      default: MIDNIGHT,
+      default: NIGHT,
     },
     text: {
-      primary: DEW_DROP,
-      secondary: FRENCH_BLUE,
-      disabled: POLAR,
+      primary: POWDER,
+      secondary: SKY,
+      // disabled: LAVENDER,
     },
     card: {
-      border: COBALT,
-      heart: PIPPIN,
+      background: NIGHT,
+      icon: CORAL,
     }
+  },
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          marginBottom: 25,
+          borderRadius: 10,
+        },
+        notchedOutline: {
+          border: `1px solid ${SKY}`,
+        }
+      }
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: POWDER,
+          color: NIGHT
+        },
+      }
+    },
   },
 });
 

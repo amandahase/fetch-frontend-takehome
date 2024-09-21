@@ -1,7 +1,8 @@
 'use client';
-import styles from "../page.module.css";
 import { useState, useEffect } from "react"
 import DogCard from "../components/dogCard"
+import Nav from "../components/nav"
+import { StyledMain, classes } from "./pageStyles"
 
 import Grid from '@mui/material/Grid2';
 import {
@@ -138,8 +139,9 @@ export default function Search() {
   }
 
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
+    <div>
+      <Nav />
+      <StyledMain className={classes.main}>
         {foundDogMatch ? 
           <div>
             <Typography>Your dog match is...</Typography>
@@ -155,8 +157,8 @@ export default function Search() {
           </div>
         :
           <div>
-            <div className={styles.pageOptions}>
-              <div className={styles.filterWrap}>
+            <div>
+              <div>
                 <FormControl sx={{ m: 1, width: 300 }}>
                   <InputLabel id="demo-multiple-chip-label">Filter By Breed</InputLabel>
                   <Select
@@ -173,7 +175,6 @@ export default function Search() {
                         ))}
                       </Box>
                     )}
-                    className={styles.filterField}
                   >
                     {dogBreeds?.map((breed) => (
                       <MenuItem
@@ -223,7 +224,7 @@ export default function Search() {
             <Pagination count={pageCount} page={page} onChange={handlePageChange} color="primary" />
           </div>
         }
-      </main>
+      </StyledMain>
     </div>
   );
 }

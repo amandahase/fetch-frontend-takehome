@@ -14,6 +14,8 @@ export default function DogCard(props) {
   return (
     <Card>
       <CardMedia
+        sx={{ height: 140 }}
+        image={props.dog.img}
         title={`${props.dog.name}, ${props.dog.age} year old ${props.dog.breed}`}
       />
       <CardContent>

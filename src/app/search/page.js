@@ -1,15 +1,10 @@
 'use client';
 import styles from "../page.module.css";
 import { useState, useEffect } from "react"
+import DogCard from "../components/dogCard"
 
 import Grid from '@mui/material/Grid2';
 import {
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
-  IconButton,
-  Typography,
   FormControl,
   InputLabel,
   Select,
@@ -91,27 +86,11 @@ export default function Search() {
     }
   }
 
-  // This isn't working correctly, right now...
-  // I think the card might need to be broken down to
-  // it's own component so each can have its own favorite state
-  // right now one is just replacing the other and there
-  //is only ever one favorited at a time...
-
-  // it works when it doesn't include the state variables and
-  // just works off of the const variable.
-
-  // need to take another look at this with the Card broken out.
-  const newFavoriteDogsList = []
-
   const handleFavoriteClick = (dog) => {
-    const dogIndex = newFavoriteDogsList.indexOf(dog.id)
-
     if (!favoriteDogsList.includes(dog.id)) {
-      newFavoriteDogsList.push(dog.id)
-      setFavoriteDogsList(newFavoriteDogsList)
+      setFavoriteDogsList(oldArray => [...oldArray, dog.id])
     } else {
-      newFavoriteDogsList.splice(dogIndex, 1)
-      setFavoriteDogsList(newFavoriteDogsList)
+      setFavoriteDogsList(oldArray => oldArray.filter((d) => d !== dog.id))
     }
   }
 
@@ -180,22 +159,11 @@ export default function Search() {
           {dogsList.length ? 
             dogsList?.map((dog) => (
               <Grid size={{ xs: 12, sm: 6, md: 4 }} key={dog.id}>
-                <Card>
-                  <CardMedia
-                    title={`${dog.name}, ${dog.age} year old ${dog.breed}`}
-                  />
-                  <CardContent>
-                    <Typography>Name: {dog.name}</Typography>
-                    <Typography>Breed: {dog.breed}</Typography>
-                    <Typography>Age: {dog.age}</Typography>
-                    <Typography>Location (Zip Code): {dog.zip_code}</Typography>
-                  </CardContent>
-                  <CardActions>
-                    <IconButton onClick={() => handleFavoriteClick(dog)}>
-                      {displayFavoriteIcons(dog)}
-                    </IconButton>
-                  </CardActions>
-                </Card>
+                <DogCard
+                  dog={dog}
+                  handleFavoriteClick={handleFavoriteClick}
+                  displayFavoriteIcons={displayFavoriteIcons}
+                />
               </Grid>
             ))
           :

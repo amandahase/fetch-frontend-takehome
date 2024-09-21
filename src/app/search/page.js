@@ -109,7 +109,6 @@ export default function Search() {
       .then((response) => {
         setFoundDogMatch(true)
         setDogsList(response.data)
-        console.log("match", response)
       })
       .catch((error) => {
         console.log(error); // TODO: Remove/replace this
@@ -146,7 +145,7 @@ export default function Search() {
       <StyledMain className={classes.main}>
         {foundDogMatch ? 
           <div>
-            <Typography>Your dog match is...</Typography>
+            <Typography variant="h1" className={classes.matchHeading}>Your dog match is...</Typography>
             {dogsList?.map((dog) => (
               <Grid size={{ md: 8 }} key={dog.id}>
                 <DogCard

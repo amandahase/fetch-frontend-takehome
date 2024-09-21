@@ -7,6 +7,7 @@ export const classes = {
   filterButtonWrap: `${PREFIX}-filterButtonWrap`,
   filterButton: `${PREFIX}-filterButton`,
   pagination: `${PREFIX}-pagination`,
+  matchHeading: `${PREFIX}-matchHeading`
 };
 
 export const StyledMain = styled("main")(({ theme }) => ({
@@ -28,5 +29,11 @@ export const StyledMain = styled("main")(({ theme }) => ({
     display: "flex",
     justifyContent: "center",
     marginTop: 40
+  },
+  [`& .${classes.matchHeading}`]: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
+    textAlign: "center"
   },
 }));

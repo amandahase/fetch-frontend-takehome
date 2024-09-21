@@ -140,7 +140,9 @@ export default function Search() {
 
   return (
     <div>
-      <Nav />
+      <Nav 
+        handleDogMatching={handleDogMatching}
+      />
       <StyledMain className={classes.main}>
         {foundDogMatch ? 
           <div>

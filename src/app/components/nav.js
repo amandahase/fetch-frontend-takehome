@@ -1,4 +1,5 @@
 'use client';
+import { useRouter } from 'next/navigation'
 
 import {
   IconButton,
@@ -10,7 +11,21 @@ import LogoutIcon from '@mui/icons-material/Logout';
 
 import { classes, StyledNav } from "./navStyles"
 
+const axios = require('axios');
+
 export default function Nav(props) {
+  const router = useRouter()
+
+  const handleLogout = () => {
+    axios.post('https://frontend-take-home-service.fetch.com/auth/logout', { withCredentials: true })
+    .then((response) => {
+      console.log(response); // TODO: Remove/replace this
+    })
+    .catch((error) => {
+      console.log(error); // TODO: Remove/replace this
+    });
+  }
+
   return (
     <StyledNav className={classes.nav}>
       <PetsIcon className={classes.icon} />
@@ -22,7 +37,14 @@ export default function Nav(props) {
         >
           Find My Dog Match
         </Button>
-        <IconButton className={classes.iconButton} aria-label="logout">
+        <IconButton
+          className={classes.iconButton}
+          aria-label="logout"
+          onClick={() => {
+            handleLogout()
+            router.push('/')
+          }}
+        >
           <LogoutIcon />
         </IconButton>
       </div>

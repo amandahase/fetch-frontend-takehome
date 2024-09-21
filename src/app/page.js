@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 import { useState } from "react"
 import { useRouter } from 'next/navigation'
 
-import { Card, CardContent, TextField, Button } from '@mui/material';
+import { TextField, Button } from '@mui/material';
 import PetsIcon from '@mui/icons-material/Pets';
 
 import { classes, Root } from "./pageStyles"

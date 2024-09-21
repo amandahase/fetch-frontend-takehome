@@ -1,26 +1,25 @@
 'use client';
-import styles from "./page.module.css";
-import { useState } from "react"
-import { useRouter } from 'next/navigation'
+import { useState } from "react";
+import { useRouter } from 'next/navigation';
 
 import { TextField, Button } from '@mui/material';
 import PetsIcon from '@mui/icons-material/Pets';
 
-import { classes, Root } from "./pageStyles"
+import { classes, Root } from "./pageStyles";
 
 const axios = require('axios');
 
 export default function Home() {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
-  const router = useRouter()
+  const router = useRouter();
  
   const handleLoginButton = () => {
     const requestBody = {
       name: name,
       email: email
-    }
+    };
 
     axios.post('https://frontend-take-home-service.fetch.com/auth/login', requestBody, { withCredentials: true })
     .then((response) => {
@@ -29,7 +28,7 @@ export default function Home() {
     .catch((error) => {
       console.log(error); // TODO: Remove/replace this
     });
-  }
+  };
 
   return (
     <Root className={classes.pageContainer}>
@@ -62,4 +61,4 @@ export default function Home() {
       </main>
     </Root>
   );
-}
+};

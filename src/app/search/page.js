@@ -1,8 +1,8 @@
 'use client';
-import { useState, useEffect } from "react"
-import DogCard from "../components/dogCard"
-import Nav from "../components/nav"
-import { StyledMain, classes } from "./pageStyles"
+import { useState, useEffect } from "react";
+import DogCard from "../components/dogCard";
+import Nav from "../components/nav";
+import { StyledMain, classes } from "./pageStyles";
 
 import Grid from '@mui/material/Grid2';
 import {
@@ -15,7 +15,7 @@ import {
   OutlinedInput,
   Button,
   Pagination,
-  Typography
+  Typography,
 } from '@mui/material';
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -31,30 +31,30 @@ export default function Search() {
   const [favoriteDogsList, setFavoriteDogsList] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(1);
-  const [foundDogMatch, setFoundDogMatch] = useState(false)
-  const [sort, setSort] = useState("breed:asc")
+  const [foundDogMatch, setFoundDogMatch] = useState(false);
+  const [sort, setSort] = useState("breed:asc");
 
   useEffect(() => {
-    getDogBreeds()
-    handleGetDogsList()
+    getDogBreeds();
+    handleGetDogsList();
   }, [])
 
   const handleGetDogsList = async () => {
     const fromValue = page * 25;
-    let resultDogIds
+    let resultDogIds;
     const params = {
       breeds: dogBreedFilter,
       from: fromValue,
-      sort: sort
-    }
+      sort: sort,
+    };
 
     await axios.get('https://frontend-take-home-service.fetch.com/dogs/search', { params: params, withCredentials: true, })
     .then((response) => {
-      resultDogIds = response.data.resultIds
+      resultDogIds = response.data.resultIds;
       if (pageCount === 0) {
-        setPageCount(Math.ceil(response.data.total/25))
+        setPageCount(Math.ceil(response.data.total/25));
       }
-      console.log(response)
+      console.log(response);
     })
     .catch((error) => {
       console.log(error); // TODO: Remove/replace this
@@ -62,22 +62,22 @@ export default function Search() {
 
     await axios.post('https://frontend-take-home-service.fetch.com/dogs', resultDogIds , { withCredentials: true })
     .then((response) => {
-      setDogsList(response.data)
+      setDogsList(response.data);
     })
     .catch((error) => {
       console.log(error); // TODO: Remove/replace this
     });
-  }
+  };
 
   const getDogBreeds = () => {
     axios.get('https://frontend-take-home-service.fetch.com/dogs/breeds', { withCredentials: true })
     .then((response) => {
-      setDogBreeds(response.data)
+      setDogBreeds(response.data);
     })
     .catch((error) => {
       console.log(error); // TODO: Remove/replace this
     });
-  }
+  };
 
   const handleChangeDogBreedFilter = (event) => {
     const {
@@ -90,20 +90,20 @@ export default function Search() {
   };
 
   const handleRemoveFilters = () => {
-    setDogsList([])
-    setDogBreedFilter([])
-    setPage(1)
-    setPageCount(0)
-  }
+    setDogsList([]);
+    setDogBreedFilter([]);
+    setPage(1);
+    setPageCount(0);
+  };
 
   const handleDogMatching = async () => {
-    let dogMatchId
+    let dogMatchId;
     if (!favoriteDogsList.length) {
-      alert("You don't have any favorite dogs yet!")
+      alert("You don't have any favorite dogs yet!");
     } else {
       await axios.post('https://frontend-take-home-service.fetch.com/dogs/match', favoriteDogsList, { withCredentials: true })
       .then((response) => {
-        dogMatchId = [response.data.match]
+        dogMatchId = [response.data.match];
       })
       .catch((error) => {
         console.log(error); // TODO: Remove/replace this
@@ -111,22 +111,22 @@ export default function Search() {
 
       await axios.post('https://frontend-take-home-service.fetch.com/dogs', dogMatchId , { withCredentials: true })
       .then((response) => {
-        setFoundDogMatch(true)
-        setDogsList(response.data)
+        setFoundDogMatch(true);
+        setDogsList(response.data);
       })
       .catch((error) => {
         console.log(error); // TODO: Remove/replace this
       });
     }
-  }
+  };
 
   const handleFavoriteClick = (dog) => {
     if (!favoriteDogsList.includes(dog.id)) {
-      setFavoriteDogsList(oldArray => [...oldArray, dog.id])
+      setFavoriteDogsList(oldArray => [...oldArray, dog.id]);
     } else {
-      setFavoriteDogsList(oldArray => oldArray.filter((d) => d !== dog.id))
+      setFavoriteDogsList(oldArray => oldArray.filter((d) => d !== dog.id));
     }
-  }
+  };
 
   const displayFavoriteIcons = (dog) => {
     if (favoriteDogsList.includes(dog.id)) {
@@ -134,23 +134,23 @@ export default function Search() {
     } else {
       return <FavoriteBorderIcon />
     }
-  }
+  };
 
   const handlePageChange = (event, value) => {
-    setPage(value)
-    handleGetDogsList()
-  }
+    setPage(value);
+    handleGetDogsList();
+  };
 
   const handleChangeSort = async (event) => {
-    setSort(event.target.value)
-    await handleGetDogsList() // Works except for when you change the sort value
-  }
+    setSort(event.target.value);
+    await handleGetDogsList(); // Works except for when you change the sort value
+  };
 
   const handleBackToSearch = async () => {
-    setFavoriteDogsList([])
-    await handleGetDogsList()
-    setFoundDogMatch(false)
-  }
+    setFavoriteDogsList([]);
+    await handleGetDogsList();
+    setFoundDogMatch(false);
+  };
 
   return (
     <div>
@@ -279,4 +279,4 @@ export default function Search() {
       </StyledMain>
     </div>
   );
-}
+};

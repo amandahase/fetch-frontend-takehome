@@ -19,10 +19,10 @@ export const classes = {
 export const StyledMain = styled("main")(({ theme }) => ({
   [`&.${classes.main}`]: {
     width: "90%",
-    margin: "40px auto"
+    margin: "40px auto",
   },
   [`& .${classes.filterSection}`]: {
-    marginBottom: 30
+    marginBottom: 30,
   },
   [`& .${classes.filterSectionWrap}`]: {
     display: "flex",
@@ -30,21 +30,21 @@ export const StyledMain = styled("main")(({ theme }) => ({
     [theme.breakpoints.up('laptop')]: {
       justifyContent: "flex-start",
       flexDirection: "row",
-      alignItems: "center"
-    }
+      alignItems: "center",
+    },
   },
   [`& .${classes.filterSelect}`]: {
     width: "100%",
     margin: 0,
     [theme.breakpoints.up('laptop')]: {
-      width: "50%"
-    }
+      width: "50%",
+    },
   },
   [`& .${classes.sortSelectWrap}`]: {
     display: "flex",
     [theme.breakpoints.up('laptop')]: {
-      justifyContent: "flex-end"
-    }
+      justifyContent: "flex-end",
+    },
   },
   [`& .${classes.sortSelect}`]: {
     width: "100%",
@@ -53,37 +53,37 @@ export const StyledMain = styled("main")(({ theme }) => ({
     },
     [theme.breakpoints.up('desktop')]: {
       width: "20%",
-    }
+    },
   },
   [`& .${classes.filterButtonWrap}`]: {
     display: "flex",
     justifyContent: "space-between",
     marginBottom: 30,
     [theme.breakpoints.up('laptop')]: {
-      justifyContent: "flex-end"
-    }
+      justifyContent: "flex-end",
+    },
   },
   [`& .${classes.filterButton}`]: {
     width: "48%",
     [theme.breakpoints.up('laptop')]: {
       width: "auto",
       "&:first-of-type": {
-        margin: "0 20px"
-      }
-    }
+        margin: "0 20px",
+      },
+    },
   },
   [`& .${classes.pagination}`]: {
     display: "flex",
     justifyContent: "center",
-    marginTop: 40
+    marginTop: 40,
   },
   [`& .${classes.matchSection}`]: {
     width: "90%",
     maxWidth: 600,
-    margin: "auto"
+    margin: "auto",
   },
   [`& .${classes.backButton}`]: {
-    marginBottom: 40
+    marginBottom: 40,
   },
   [`& .${classes.matchHeading}`]: {
     fontSize: 24,

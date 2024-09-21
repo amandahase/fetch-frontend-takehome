@@ -6,7 +6,7 @@ export const classes = {
   main: `${PREFIX}-main`,
   card: `${PREFIX}-card`,
   cardContent: `${PREFIX}-cardContent`,
-  icon: `${PREFIX}-icon`
+  icon: `${PREFIX}-icon`,
 };
 
 export const Root = styled("div")(({ theme }) => ({
@@ -15,26 +15,25 @@ export const Root = styled("div")(({ theme }) => ({
     justifyContent: "center",
     alignItems: "center",
     minHeight: "100svh",
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.background.default,
   },
   [`& .${classes.main}`]: {
     width: "90%",
-    maxWidth: "500px"
+    maxWidth: "500px",
   },
   [`& .${classes.card}`]: {
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   [`& .${classes.icon}`]: {
     fontSize: 100,
     width: "auto",
     fill: theme.palette.card.icon,
-    marginBottom: 40
+    marginBottom: 40,
   },
   [`& .${classes.button}`]: {
     fontSize: 16,
     maxWidth: "150px",
-    
   },
 }));

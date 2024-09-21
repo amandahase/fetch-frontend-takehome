@@ -5,7 +5,7 @@ export const classes = {
   nav: `${PREFIX}-nav`,
   iconButton: `${PREFIX}-iconButton`,
   icon: `${PREFIX}-icon`,
-  button: `${PREFIX}-button`
+  button: `${PREFIX}-button`,
 };
 
 export const StyledNav = styled("nav")(({ theme }) => ({
@@ -15,15 +15,15 @@ export const StyledNav = styled("nav")(({ theme }) => ({
     alignItems: "center",
     padding: "20px",
     height: "70px",
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.background.default,
   },
   [`& .${classes.button}`]: {
-    marginRight: 10
+    marginRight: 10,
   },
   [`& .${classes.iconButton}`]: {
-    color: theme.palette.card.icon
+    color: theme.palette.card.icon,
   },
   [`& .${classes.icon}`]: {
-    color: theme.palette.card.icon
+    color: theme.palette.card.icon,
   },
 }));

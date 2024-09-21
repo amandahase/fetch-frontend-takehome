@@ -1,20 +1,17 @@
 'use client';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 
-import {
-  IconButton,
-  Button
-} from '@mui/material';
+import { IconButton, Button } from '@mui/material';
 
 import PetsIcon from '@mui/icons-material/Pets';
 import LogoutIcon from '@mui/icons-material/Logout';
 
-import { classes, StyledNav } from "./navStyles"
+import { classes, StyledNav } from "./navStyles";
 
 const axios = require('axios');
 
 export default function Nav(props) {
-  const router = useRouter()
+  const router = useRouter();
 
   const handleLogout = () => {
     axios.post('https://frontend-take-home-service.fetch.com/auth/logout', { withCredentials: true })
@@ -24,7 +21,7 @@ export default function Nav(props) {
     .catch((error) => {
       console.log(error); // TODO: Remove/replace this
     });
-  }
+  };
 
   return (
     <StyledNav className={classes.nav}>
@@ -50,4 +47,4 @@ export default function Nav(props) {
       </div>
     </StyledNav>
   );
-}
+};

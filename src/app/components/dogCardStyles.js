@@ -12,15 +12,15 @@ export const StyledCard = styled(Card)(({ theme }) => ({
   [`& .${classes.image}`]: {
     height: "250px",
     [theme.breakpoints.up('laptop')]: {
-      height: "350px"
-    }
+      height: "350px",
+    },
   },
   [`& .${classes.cardText}`]: {
-    color: theme.palette.card.text
+    color: theme.palette.card.text,
   },
   [`& .${classes.icon}`]: {
     "& svg": {
-      fill: theme.palette.card.icon
-    }
+      fill: theme.palette.card.icon,
+    },
   },
 }));

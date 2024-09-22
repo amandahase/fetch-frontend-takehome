@@ -32,6 +32,7 @@ export default function Nav(props) {
             variant="contained"
             onClick={props.handleDogMatching}
             className={classes.button}
+            disabled={!props.favoriteDogsList.length}
           >
             Find My Dog Match
           </Button>

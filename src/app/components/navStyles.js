@@ -24,6 +24,9 @@ export const StyledNav = styled("nav")(({ theme }) => ({
   },
   [`& .${classes.button}`]: {
     marginRight: 10,
+    "&.Mui-disabled": {
+      backgroundColor: "rgba(248, 249, 250, 0.26)" // Muted POWDER from theme
+    }
   },
   [`& .${classes.iconButton}`]: {
     color: theme.palette.card.icon,

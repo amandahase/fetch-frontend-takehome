@@ -173,6 +173,7 @@ export default function Search() {
       <Nav 
         handleDogMatching={handleDogMatching}
         foundDogMatch={foundDogMatch}
+        favoriteDogsList={favoriteDogsList}
       />
       <StyledMain className={classes.main}>
         {foundDogMatch ? 

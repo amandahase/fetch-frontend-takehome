@@ -53,6 +53,10 @@ const theme = createTheme({
         root: {
           backgroundColor: POWDER,
           color: NIGHT,
+          "&.Mui-disabled": {
+            backgroundColor: "rgba(248, 249, 250, 0.26)", // Muted POWDER
+            color: NIGHT,
+          },
         },
         text: {
           background: "none",

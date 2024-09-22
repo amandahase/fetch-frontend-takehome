@@ -15,3 +15,4 @@ Then you'll be able to open [http://localhost:3000](http://localhost:3000) with 
 2. Add unit and/or e2e tests to ensure code stability and long term health.
 3. Add a dark/light mode toggle or a choice of different color schemes.  I love the idea of giving users the ability to select their own option and customize their experience in this way.  Plus, it's fun...or at least I think so!
 4. Implement additional filtering options for location.
+5. I would also like to make the match interface it's own route/page instead of a conditional UI of the `/search` route.  That was my original intention when I started, but had trouble finding a way to get the matched dog's data from the search page to the match page for it to be displayed there.  I'm sure there is a way to do this (and hopefully one day I'll take the extra time to figure it out), but how I have it works for now.

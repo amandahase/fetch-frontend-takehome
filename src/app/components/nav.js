@@ -16,10 +16,10 @@ export default function Nav(props) {
   const handleLogout = () => {
     axios.post('https://frontend-take-home-service.fetch.com/auth/logout', { withCredentials: true })
     .then((response) => {
-      console.log(response); // TODO: Remove/replace this
+      console.log(response);
     })
     .catch((error) => {
-      console.log(error); // TODO: Remove/replace this
+      console.log(error);
     });
   };
 

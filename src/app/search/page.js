@@ -66,7 +66,7 @@ export default function Search() {
       }
     })
     .catch((error) => {
-      console.log(error); // TODO: Remove/replace this
+      console.log(error);
     });
 
     await axios.post('https://frontend-take-home-service.fetch.com/dogs', resultDogIds , { withCredentials: true })
@@ -74,7 +74,7 @@ export default function Search() {
       setDogsList(response.data);
     })
     .catch((error) => {
-      console.log(error); // TODO: Remove/replace this
+      console.log(error);
     });
   };
 
@@ -84,7 +84,7 @@ export default function Search() {
       setDogBreeds(response.data);
     })
     .catch((error) => {
-      console.log(error); // TODO: Remove/replace this
+      console.log(error);
     });
   };
 
@@ -108,7 +108,7 @@ export default function Search() {
         dogMatchId = [response.data.match];
       })
       .catch((error) => {
-        console.log(error); // TODO: Remove/replace this
+        console.log(error);
       });
 
       await axios.post('https://frontend-take-home-service.fetch.com/dogs', dogMatchId , { withCredentials: true })
@@ -117,7 +117,7 @@ export default function Search() {
         setDogsList(response.data);
       })
       .catch((error) => {
-        console.log(error); // TODO: Remove/replace this
+        console.log(error);
       });
     }
   };

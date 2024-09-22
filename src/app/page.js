@@ -23,10 +23,10 @@ export default function Home() {
 
     axios.post('https://frontend-take-home-service.fetch.com/auth/login', requestBody, { withCredentials: true })
     .then((response) => {
-      console.log(response); // TODO: Remove/replace this
+      console.log(response);
     })
     .catch((error) => {
-      console.log(error); // TODO: Remove/replace this
+      console.log(error);
     });
   };
 

@@ -19,6 +19,7 @@ export const StyledNav = styled("nav")(({ theme }) => ({
     [theme.breakpoints.up('largeDesktop')]: {
       maxWidth: 1440,
       margin: "auto",
+      padding: "20px 0",
     },
   },
   [`& .${classes.button}`]: {

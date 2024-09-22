@@ -16,6 +16,7 @@ import {
   Button,
   Pagination,
   Typography,
+  IconButton,
 } from '@mui/material';
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -138,10 +139,30 @@ export default function Search() {
   };
 
   const displayFavoriteIcons = (dog) => {
-    if (favoriteDogsList.includes(dog.id)) {
-      return <FavoriteIcon />
+    if (!foundDogMatch) {
+      if (favoriteDogsList.includes(dog.id)) {
+        return (
+          <IconButton
+            className={classes.iconButton}
+            onClick={() => handleFavoriteClick(dog)}
+            aria-label={`Remove ${dog.name}, ${dog.age} year old ${dog.breed} from your favorite list`}
+          >
+            <FavoriteIcon />
+          </IconButton>
+        )
+      } else {
+        return (
+          <IconButton
+            className={classes.iconButton}
+            onClick={() => handleFavoriteClick(dog)}
+            aria-label={`Add ${dog.name}, ${dog.age} year old ${dog.breed} to your favorite list`}
+          >
+            <FavoriteBorderIcon />
+          </IconButton>
+        )
+      }
     } else {
-      return <FavoriteBorderIcon />
+      return <FavoriteIcon className={classes.icon} />
     }
   };
 
@@ -187,7 +208,7 @@ export default function Search() {
               <Grid size={{ mobile: 12, tablet: 6, laptop: 4 }} key={dog.id}>
                 <DogCard
                   dog={dog}
-                  handleFavoriteClick={handleFavoriteClick}
+                  // handleFavoriteClick={handleFavoriteClick}
                   displayFavoriteIcons={displayFavoriteIcons}
                 />
               </Grid>
@@ -267,7 +288,7 @@ export default function Search() {
                   <Grid size={{ mobile: 12, tablet: 6, laptop: 4 }} key={dog.id}>
                     <DogCard
                       dog={dog}
-                      handleFavoriteClick={handleFavoriteClick}
+                      // handleFavoriteClick={handleFavoriteClick}
                       displayFavoriteIcons={displayFavoriteIcons}
                     />
                   </Grid>

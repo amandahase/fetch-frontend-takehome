@@ -14,6 +14,8 @@ export const classes = {
   matchSection: `${PREFIX}-matchSection`,
   backButton: `${PREFIX}-backButton`,
   matchHeading: `${PREFIX}-matchHeading`,
+  iconButton: `${PREFIX}-iconButton`,
+  icon: `${PREFIX}-icon`,
 };
 
 export const StyledMain = styled("main")(({ theme }) => ({
@@ -115,5 +117,13 @@ export const StyledMain = styled("main")(({ theme }) => ({
       fontSize: 32,
       marginBottom: 30,
     },
+  },
+  [`& .${classes.iconButton}`]: {
+    "& svg": {
+      fill: theme.palette.card.icon,
+    },
+  },
+  [`& .${classes.icon}`]: {
+    fill: theme.palette.card.icon,
   },
 }));

@@ -5,7 +5,6 @@ import {
   CardMedia,
   CardContent,
   CardActions,
-  IconButton,
   Typography,
 } from '@mui/material';
 
@@ -32,16 +31,7 @@ export default function DogCard(props) {
         </Typography>
       </CardContent>
       <CardActions>
-        {props.handleFavoriteClick ?
-          <IconButton
-            className={classes.icon}
-            onClick={() => props.handleFavoriteClick(props.dog)}
-          >
-            {props.displayFavoriteIcons(props.dog)}
-          </IconButton>
-        :
-          props.displayFavoriteIcons(props.dog)
-        }
+        {props.displayFavoriteIcons(props.dog)}
       </CardActions>
     </StyledCard>
   );

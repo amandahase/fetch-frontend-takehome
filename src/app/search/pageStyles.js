@@ -12,7 +12,6 @@ export const classes = {
   sortSelect: `${PREFIX}-sortSelect`,
   pagination: `${PREFIX}-pagination`,
   matchSection: `${PREFIX}-matchSection`,
-  backButton: `${PREFIX}-backButton`,
   matchHeading: `${PREFIX}-matchHeading`,
   iconButton: `${PREFIX}-iconButton`,
   icon: `${PREFIX}-icon`,
@@ -37,7 +36,7 @@ export const StyledMain = styled("main")(({ theme }) => ({
   [`& .${classes.filterSectionWrap}`]: {
     display: "flex",
     flexDirection: "column",
-    [theme.breakpoints.up("laptop")]: {
+    [theme.breakpoints.up("tablet")]: {
       justifyContent: "flex-start",
       flexDirection: "row",
       alignItems: "center",
@@ -49,7 +48,7 @@ export const StyledMain = styled("main")(({ theme }) => ({
   [`& .${classes.filterSelect}`]: {
     width: "100%",
     marginBottom: 25,
-    [theme.breakpoints.up("laptop")]: {
+    [theme.breakpoints.up("tablet")]: {
       flexGrow: 1,
     },
     [theme.breakpoints.up("desktop")]: {
@@ -60,7 +59,7 @@ export const StyledMain = styled("main")(({ theme }) => ({
     display: "flex",
     justifyContent: "space-between",
     marginBottom: 30,
-    [theme.breakpoints.up("laptop")]: {
+    [theme.breakpoints.up("tablet")]: {
       justifyContent: "flex-end",
     },
     [theme.breakpoints.up("desktop")]: {
@@ -68,12 +67,14 @@ export const StyledMain = styled("main")(({ theme }) => ({
     },
   },
   [`& .${classes.filterButton}`]: {
-    width: "48%",
+    width: "100%",
+    [theme.breakpoints.up("tablet")]: {
+      width: 145,
+      marginLeft: 20,
+    },
     [theme.breakpoints.up("laptop")]: {
       width: 145,
-      "&:first-of-type": {
-        margin: "0 20px",
-      },
+      marginLeft: 20,
     },
   },
   [`& .${classes.sortSelectWrap}`]: {
@@ -104,9 +105,6 @@ export const StyledMain = styled("main")(({ theme }) => ({
     width: "90%",
     maxWidth: 600,
     margin: "auto",
-  },
-  [`& .${classes.backButton}`]: {
-    marginBottom: 40,
   },
   [`& .${classes.matchHeading}`]: {
     fontSize: 24,

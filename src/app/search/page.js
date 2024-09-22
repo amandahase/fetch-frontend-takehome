@@ -99,13 +99,6 @@ export default function Search() {
     );
   };
 
-  const handleRemoveFilters = () => {
-    setDogsList([]);
-    setDogBreedFilter([]);
-    setPage(1);
-    setPageCount(0);
-  };
-
   const handleDogMatching = async () => {
     let dogMatchId;
     if (!favoriteDogsList.length) {
@@ -176,12 +169,6 @@ export default function Search() {
     setIsSorting(true);
   };
 
-  const handleBackToSearch = async () => {
-    setFavoriteDogsList([]);
-    await handleGetDogsList();
-    setFoundDogMatch(false);
-  };
-
   return (
     <div>
       <Nav 
@@ -190,14 +177,6 @@ export default function Search() {
       <StyledMain className={classes.main}>
         {foundDogMatch ? 
           <div className={classes.matchSection}>
-            <Button
-              variant="text"
-              className={classes.backButton}
-              startIcon={<ArrowBackIosIcon />}
-              onClick={handleBackToSearch}
-            >
-              Back to Search
-            </Button>
             <Typography
               variant="h1"
               className={classes.matchHeading}
@@ -252,13 +231,6 @@ export default function Search() {
                     className={classes.filterButton}
                   >
                     Search Dogs
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    onClick={handleRemoveFilters}
-                    className={classes.filterButton}
-                  >
-                    Remove Filters
                   </Button>
                 </div>
               </div>

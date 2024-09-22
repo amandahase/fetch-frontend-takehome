@@ -20,6 +20,9 @@ export const StyledMain = styled("main")(({ theme }) => ({
   [`&.${classes.main}`]: {
     width: "90%",
     margin: "40px auto",
+    [theme.breakpoints.up('largeDesktop')]: {
+      maxWidth: 1440,
+    },
   },
   [`& .${classes.filterSection}`]: {
     marginBottom: 30,

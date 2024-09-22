@@ -16,6 +16,10 @@ export const StyledNav = styled("nav")(({ theme }) => ({
     padding: "20px",
     height: "70px",
     backgroundColor: theme.palette.background.default,
+    [theme.breakpoints.up('largeDesktop')]: {
+      maxWidth: 1440,
+      margin: "auto",
+    },
   },
   [`& .${classes.button}`]: {
     marginRight: 10,

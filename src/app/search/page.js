@@ -141,9 +141,12 @@ export default function Search() {
     handleGetDogsList();
   };
 
-  const handleChangeSort = async (event) => {
+  const handleChangeSort = (event) => {
     setSort(event.target.value);
-    await handleGetDogsList(); // Works except for when you change the sort value
+  };
+
+  const handleSorting = () => {
+    handleGetDogsList();
   };
 
   const handleBackToSearch = async () => {
@@ -250,6 +253,7 @@ export default function Search() {
                     <MenuItem value={"age:desc"}>By Age (Desc)</MenuItem>
                   </Select>
                 </FormControl>
+                <Button variant="contained" onClick={handleSorting}>Sort</Button>
               </div>
             </div>
             <Grid container spacing={3}>
@@ -264,7 +268,7 @@ export default function Search() {
                   </Grid>
                 ))
               :
-                "No search results"
+                <Typography>No search results</Typography>
               }
             </Grid>
             <Pagination

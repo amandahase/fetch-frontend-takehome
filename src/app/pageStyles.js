@@ -7,6 +7,7 @@ export const classes = {
   card: `${PREFIX}-card`,
   cardContent: `${PREFIX}-cardContent`,
   icon: `${PREFIX}-icon`,
+  textField: `${PREFIX}-textField`,
 };
 
 export const Root = styled("div")(({ theme }) => ({
@@ -32,8 +33,7 @@ export const Root = styled("div")(({ theme }) => ({
     fill: theme.palette.card.icon,
     marginBottom: 40,
   },
-  [`& .${classes.button}`]: {
-    fontSize: 16,
-    maxWidth: "150px",
+  [`& .${classes.textField}`]: {
+    marginBottom: 25,
   },
 }));

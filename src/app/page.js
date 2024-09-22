@@ -40,12 +40,14 @@ export default function Home() {
             label="Name"
             value={name}
             onChange={(event) => setName(event.target.value)}
+            className={classes.textField}
           />
           <TextField
             variant="outlined"
             label="Email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
+            className={classes.textField}
           />
           <Button 
             variant="contained"
@@ -53,7 +55,6 @@ export default function Home() {
               handleLoginButton()
               router.push('/search')
             }}
-            className={classes.button}
           >
             Login
           </Button>

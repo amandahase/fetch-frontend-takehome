@@ -35,24 +35,25 @@ export const StyledMain = styled("main")(({ theme }) => ({
   },
   [`& .${classes.filterSelect}`]: {
     width: "100%",
-    margin: 0,
+    marginBottom: 25,
     [theme.breakpoints.up('laptop')]: {
       width: "50%",
     },
   },
   [`& .${classes.sortSelectWrap}`]: {
     display: "flex",
-    [theme.breakpoints.up('laptop')]: {
-      justifyContent: "flex-end",
+    justifyContent: "space-between",
+    alignItems: "center",
+    [theme.breakpoints.up('tablet')]: {
+      justifyContent: "flex-start",
     },
   },
   [`& .${classes.sortSelect}`]: {
-    width: "100%",
-    [theme.breakpoints.up('laptop')]: {
-      width: "33%",
-    },
-    [theme.breakpoints.up('desktop')]: {
-      width: "20%",
+    flexGrow: 1,
+    marginRight: 20,
+    [theme.breakpoints.up('tablet')]: {
+      width: "25%",
+      flexGrow: "unset",
     },
   },
   [`& .${classes.filterButtonWrap}`]: {

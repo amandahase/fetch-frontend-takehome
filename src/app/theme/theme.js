@@ -40,7 +40,6 @@ const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          marginBottom: 25,
           borderRadius: 10,
         },
         notchedOutline: {

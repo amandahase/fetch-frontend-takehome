@@ -11,7 +11,7 @@ export const classes = {
 export const StyledCard = styled(Card)(({ theme }) => ({
   [`& .${classes.image}`]: {
     height: "250px",
-    [theme.breakpoints.up('laptop')]: {
+    [theme.breakpoints.up("laptop")]: {
       height: "350px",
     },
   },

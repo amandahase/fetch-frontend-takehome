@@ -27,13 +27,15 @@ export default function Nav(props) {
     <StyledNav className={classes.nav}>
       <PetsIcon className={classes.icon} />
       <div>
-        <Button
-          variant="contained"
-          onClick={props.handleDogMatching}
-          className={classes.button}
-        >
-          Find My Dog Match
-        </Button>
+        {!props.foundDogMatch &&
+          <Button
+            variant="contained"
+            onClick={props.handleDogMatching}
+            className={classes.button}
+          >
+            Find My Dog Match
+          </Button>
+        }
         <IconButton
           className={classes.iconButton}
           aria-label="logout"

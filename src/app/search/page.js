@@ -21,7 +21,6 @@ import {
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 const axios = require('axios');
 
@@ -173,6 +172,7 @@ export default function Search() {
     <div>
       <Nav 
         handleDogMatching={handleDogMatching}
+        foundDogMatch={foundDogMatch}
       />
       <StyledMain className={classes.main}>
         {foundDogMatch ? 

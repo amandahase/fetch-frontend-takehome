@@ -6,10 +6,10 @@ export const classes = {
   filterSection: `${PREFIX}-filterSection`,
   filterSectionWrap: `${PREFIX}-filterSectionWrap`,
   filterSelect: `${PREFIX}-filterSelect`,
-  sortSelectWrap: `${PREFIX}-sortSelectWrap`,
-  sortSelect: `${PREFIX}-sortSelect`,
   filterButtonWrap: `${PREFIX}-filterButtonWrap`,
   filterButton: `${PREFIX}-filterButton`,
+  sortSelectWrap: `${PREFIX}-sortSelectWrap`,
+  sortSelect: `${PREFIX}-sortSelect`,
   pagination: `${PREFIX}-pagination`,
   matchSection: `${PREFIX}-matchSection`,
   backButton: `${PREFIX}-backButton`,
@@ -20,60 +20,77 @@ export const StyledMain = styled("main")(({ theme }) => ({
   [`&.${classes.main}`]: {
     width: "90%",
     margin: "40px auto",
-    [theme.breakpoints.up('largeDesktop')]: {
+    [theme.breakpoints.up("largeDesktop")]: {
       maxWidth: 1440,
     },
   },
   [`& .${classes.filterSection}`]: {
     marginBottom: 30,
+    [theme.breakpoints.up("desktop")]: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
   },
   [`& .${classes.filterSectionWrap}`]: {
     display: "flex",
     flexDirection: "column",
-    [theme.breakpoints.up('laptop')]: {
+    [theme.breakpoints.up("laptop")]: {
       justifyContent: "flex-start",
       flexDirection: "row",
       alignItems: "center",
+    },
+    [theme.breakpoints.up("desktop")]: {
+      width: "80%",
     },
   },
   [`& .${classes.filterSelect}`]: {
     width: "100%",
     marginBottom: 25,
-    [theme.breakpoints.up('laptop')]: {
-      width: "50%",
+    [theme.breakpoints.up("laptop")]: {
+      flexGrow: 1,
     },
-  },
-  [`& .${classes.sortSelectWrap}`]: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    [theme.breakpoints.up('tablet')]: {
-      justifyContent: "flex-start",
-    },
-  },
-  [`& .${classes.sortSelect}`]: {
-    flexGrow: 1,
-    marginRight: 20,
-    [theme.breakpoints.up('tablet')]: {
-      width: "25%",
-      flexGrow: "unset",
+    [theme.breakpoints.up("desktop")]: {
+      marginBottom: 0,
     },
   },
   [`& .${classes.filterButtonWrap}`]: {
     display: "flex",
     justifyContent: "space-between",
     marginBottom: 30,
-    [theme.breakpoints.up('laptop')]: {
+    [theme.breakpoints.up("laptop")]: {
       justifyContent: "flex-end",
+    },
+    [theme.breakpoints.up("desktop")]: {
+      marginBottom: 0,
     },
   },
   [`& .${classes.filterButton}`]: {
     width: "48%",
-    [theme.breakpoints.up('laptop')]: {
-      width: "auto",
+    [theme.breakpoints.up("laptop")]: {
+      width: 145,
       "&:first-of-type": {
         margin: "0 20px",
       },
+    },
+  },
+  [`& .${classes.sortSelectWrap}`]: {
+    width: "100%",
+    [theme.breakpoints.up("tablet")]: {
+      display: "flex",
+      justifyContent: "flex-end",
+    },
+    [theme.breakpoints.up("desktop")]: {
+      width: 170,
+    },
+  },
+  [`& .${classes.sortSelect}`]: {
+    width: "100%",
+    [theme.breakpoints.up("tablet")]: {
+      width: 170,
+    },
+    [theme.breakpoints.up("desktop")]: {
+      width: "100%",
     },
   },
   [`& .${classes.pagination}`]: {
@@ -94,7 +111,7 @@ export const StyledMain = styled("main")(({ theme }) => ({
     fontWeight: "bold",
     marginBottom: 20,
     textAlign: "center",
-    [theme.breakpoints.up('tablet')]: {
+    [theme.breakpoints.up("tablet")]: {
       fontSize: 32,
       marginBottom: 30,
     },

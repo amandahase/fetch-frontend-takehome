@@ -34,6 +34,7 @@ export default function Search() {
   const [foundDogMatch, setFoundDogMatch] = useState(false);
   const [sort, setSort] = useState("breed:asc");
   const [isChangingPage, setIsChangingPage] = useState(false);
+  const [isSorting, setIsSorting] = useState(false);
 
   useEffect(() => {
     getDogBreeds();
@@ -41,11 +42,12 @@ export default function Search() {
   }, []);
 
   useEffect(() => {
-    if (isChangingPage) {
+    if (isChangingPage || isSorting) {
       handleGetDogsList();
       setIsChangingPage(false);
+      setIsSorting(false);
     }
-  }, [isChangingPage]);
+  }, [isChangingPage, isSorting]);
 
   const handleGetDogsList = async () => {
     const fromValue = page * 25;
@@ -62,7 +64,6 @@ export default function Search() {
       if (pageCount === 0) {
         setPageCount(Math.ceil(response.data.total/25));
       }
-      console.log(response);
     })
     .catch((error) => {
       console.log(error); // TODO: Remove/replace this
@@ -151,10 +152,7 @@ export default function Search() {
 
   const handleChangeSort = (event) => {
     setSort(event.target.value);
-  };
-
-  const handleSorting = () => {
-    handleGetDogsList();
+    setIsSorting(true);
   };
 
   const handleBackToSearch = async () => {
@@ -261,7 +259,6 @@ export default function Search() {
                     <MenuItem value={"age:desc"}>By Age (Desc)</MenuItem>
                   </Select>
                 </FormControl>
-                <Button variant="contained" onClick={handleSorting}>Sort</Button>
               </div>
             </div>
             <Grid container spacing={3}>

@@ -33,11 +33,19 @@ export default function Search() {
   const [page, setPage] = useState(1);
   const [foundDogMatch, setFoundDogMatch] = useState(false);
   const [sort, setSort] = useState("breed:asc");
+  const [isChangingPage, setIsChangingPage] = useState(false);
 
   useEffect(() => {
     getDogBreeds();
     handleGetDogsList();
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    if (isChangingPage) {
+      handleGetDogsList();
+      setIsChangingPage(false);
+    }
+  }, [isChangingPage]);
 
   const handleGetDogsList = async () => {
     const fromValue = page * 25;
@@ -138,7 +146,7 @@ export default function Search() {
 
   const handlePageChange = (event, value) => {
     setPage(value);
-    handleGetDogsList();
+    setIsChangingPage(true);
   };
 
   const handleChangeSort = (event) => {
